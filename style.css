@@ -1,0 +1,50 @@
+
+body{
+	min-height: 100vh;
+	min-width: 100vh;
+	background-color: #FFE6E6;
+	color: #AE88BF;
+}
+h1{
+	text-align: center;
+	font weight: 700;
+	font size:50px;
+}
+p{
+	text-align: center;
+	font weight:bold;
+	font size: 70px;
+}
+.action{
+	display: flex;
+	justify-content: center;
+}
+
+.action button{
+	padding: 8px 16px;
+	font-size: 30px;
+	border-radius: 10px;
+	background-color: #D5B7E2;
+	color:black;
+}
+.grid-container{
+	grid-template-columns: repeat(auto-fill, 40px);
+}
+/*card settings skipped*/
+
+.card.flipped{
+	transform: rotateY(180deg);
+}
+
+.card.front{
+	display:flex;
+	justify-content:center; 
+	align-items:center;
+	transform: rotateY(180deg)
+}
+.card.back{
+	background-image:;
+	background-position:center center;
+	background-size: cover;
+	backface-visibility: hidden;
+}
