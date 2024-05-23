@@ -36,7 +36,7 @@ function FlipCard{
   CardTwo = this;
   score++;
   document.querySelector(".score").textContent = score;
-  lockBoard = true;
+  LockBoard = true;
 
   checkForMatch();
 }
