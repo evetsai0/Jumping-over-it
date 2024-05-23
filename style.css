@@ -27,10 +27,25 @@ p{
 	background-color: #D5B7E2;
 	color:black;
 }
-.grid-container{
+.card-container{
 	grid-template-columns: repeat(auto-fill, 40px);
 }
-/*card settings skipped*/
+
+.card {
+  height: calc(140px / 2 * 3);
+  width: 140px;
+  border-radius: 10px;
+  background-color: white;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease-in-out;
+}
+
+.front-image {
+  width: 60px;
+  height: 60px;
+}
+
 
 .card.flipped{
 	transform: rotateY(180deg);
@@ -43,8 +58,12 @@ p{
 	transform: rotateY(180deg)
 }
 .card.back{
-	background-image:;
+	background-image:url(evetsai0.github.io/cardback.png);
 	background-position:center center;
 	background-size: cover;
 	backface-visibility: hidden;
+}
+
+.card .front {
+  transform: rotateY(180deg);
 }
