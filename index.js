@@ -14,7 +14,7 @@ fetch("./data/cards.json")
 
 document.querySelector(".score").textContent = score;
 
-function resetBoard() { //restart
+function Reset() { //restart
   LockBoard = false;
   CardOne = null;
   CardTwo = null;
@@ -39,4 +39,10 @@ function FlipCard{
   LockBoard = true;
 
   checkForMatch();
+}
+
+function unflipCards() {
+    CardOne.classList.remove("flipped");
+    CardTwo.classList.remove("flipped");
+    Reset();
 }
