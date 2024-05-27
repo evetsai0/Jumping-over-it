@@ -59,6 +59,11 @@ function ShuffleCards() {
   }
 }
 
+function Match(){
+   let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+   isMatch ? disableCards() : unflipCards(); //如果成功->disableCards 反->unflipCards
+}
+
 function unflipCards() {
     CardOne.classList.remove("flipped");
     CardTwo.classList.remove("flipped");
