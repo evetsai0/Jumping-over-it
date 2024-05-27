@@ -61,7 +61,7 @@ function ShuffleCards() {
 
 function Match(){
    let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
-   isMatch ? disableCards() : unflipCards(); //如果成功->disableCards 反->unflipCards
+   isMatch ? disableCards() : unflipCards(); //成功不能再點->disableCards 反->unflipCards
 }
 
 function unflipCards() {
