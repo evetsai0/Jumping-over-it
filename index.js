@@ -4,6 +4,16 @@ let cardOne, cardTwo;
 let LockBoard = false;
 let score = 0;
 
+ const items= {
+  "https://evetsai0.github.io/cardfronts/cat.jpg"
+  "https://evetsai0.github.io/cardfronts/creeper.jpg"
+  "https://evetsai0.github.io/cardfronts/deer.jpg"
+  "https://evetsai0.github.io/cardfronts/dog.jpg"
+  "https://evetsai0.github.io/cardfronts/doraemon.jpg"
+  "https://evetsai0.github.io/cardfronts/eevee.jpg"
+  "https://evetsai0.github.io/cardfronts/ghost.jpg"
+  "https://evetsai0.github.io/cardfronts/kirby.jpg"
+ }
 fetch("./data/cards.json")
   .then((res) => res.json())
   .then((data) => {
@@ -46,3 +56,5 @@ function unflipCards() {
     CardTwo.classList.remove("flipped");
     Reset();
 }
+
+
