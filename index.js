@@ -46,14 +46,14 @@ function FlipCard{
 
 function ShuffleCards() {
   let cur = cards.length,
-    randomIndex,
-    temporaryValue;
+    random,
+    tmpValue;
   while (cur !== 0) {
-    randomIndex = Math.floor(Math.random() * cur);
+    random = Math.floor(Math.random() * cur);
     cur -= 1;
-    temporaryValue = cards[cur];
-    cards[cur] = cards[randomIndex];
-    cards[randomIndex] = temporaryValue;
+    tmpValue = cards[cur];
+    cards[cur] = cards[random];
+    cards[random] = tmpValue;
   }
 }
 
