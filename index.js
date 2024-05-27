@@ -4,7 +4,7 @@ let cardOne, cardTwo;
 let LockBoard = false;
 let score = 0;
 
- const items= {
+ const cards= {
   "https://evetsai0.github.io/cardfronts/cat.jpg"
   "https://evetsai0.github.io/cardfronts/creeper.jpg"
   "https://evetsai0.github.io/cardfronts/deer.jpg"
@@ -14,13 +14,6 @@ let score = 0;
   "https://evetsai0.github.io/cardfronts/ghost.jpg"
   "https://evetsai0.github.io/cardfronts/kirby.jpg"
  }
-fetch("./data/cards.json")
-  .then((res) => res.json())
-  .then((data) => {
-    cards = [...data, ...data];
-    shuffleCards();
-    generateCards();
-  });
 
 document.querySelector(".score").textContent = score;
 
@@ -49,6 +42,19 @@ function FlipCard{
   LockBoard = true;
 
   checkForMatch();
+}
+
+function ShuffleCards() {
+  let cur = cards.length,
+    randomIndex,
+    temporaryValue;
+  while (cur !== 0) {
+    randomIndex = Math.floor(Math.random() * cur);
+    cur -= 1;
+    temporaryValue = cards[cur];
+    cards[cur] = cards[randomIndex];
+    cards[randomIndex] = temporaryValue;
+  }
 }
 
 function unflipCards() {
