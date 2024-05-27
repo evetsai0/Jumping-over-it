@@ -4,6 +4,8 @@ let cardOne, cardTwo;
 let LockBoard = false;
 let score = 0;
 
+score = document.querySelector(".score");
+
  const cards= {
   "https://evetsai0.github.io/cardfronts/cat.jpg"
   "https://evetsai0.github.io/cardfronts/creeper.jpg"
