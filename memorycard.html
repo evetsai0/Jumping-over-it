@@ -9,8 +9,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif; 
-            
+            font-family: Arial, sans-serif;
         }
 
         .game-container {
@@ -75,12 +74,13 @@
             font-size: 16px;
         }
 
-        #text1
-        { position: absolute;
-         top: 55px; 
-         left:130px;
-         font-size: 50px; 
-         font-family:"Phosphate" }
+        #text1{ 
+            position: absolute;
+            top: 55px; 
+            left:130px;
+            font-size: 50px; 
+            font-family:"Phosphate" 
+        }
         
         #win-message {
             display: none;
@@ -88,13 +88,13 @@
             color: #F390B9;
             margin-top: 25px;
         }
-
     </style>
 </head>
 <body>
     <div class="game-container">
         <div id="game-board" class="game-board"></div>
         <button id="restart-button">Restart Game</button>
+        <div id="win-message">You Win!!</div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
