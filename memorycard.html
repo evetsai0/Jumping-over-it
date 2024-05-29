@@ -81,6 +81,13 @@
          left:130px;
          font-size: 50px; 
          font-family:"Phosphate" }
+        
+        #win-message {
+            display: none;
+            font-size: 48px;
+            color: #F390B9;
+            margin-top: 25px;
+        }
 
     </style>
 </head>
@@ -103,8 +110,10 @@
             ];
             const gameBoard = document.getElementById('game-board');
             const restartButton = document.getElementById('restart-button');
+            const winMessage = document.getElementById('win-message');
             let flippedCards = [];
             let lockBoard = false;
+            let matchesFound = 0;
 
             function shuffle(array) {
                 for (let i = array.length - 1; i > 0; i--) {
@@ -116,6 +125,8 @@
 
             function createBoard() {
                 gameBoard.innerHTML = '';
+                winMessage.style.display = 'none';
+                matchesFound = 0;
                 const shuffledImages = shuffle([...cardImages]);
                 shuffledImages.forEach(image => {
                     const card = document.createElement('div');
@@ -151,6 +162,10 @@
                 const secondImage = secondCard.querySelector('.flip-card-inner').dataset.image;
 
                 if (firstImage === secondImage) {
+                    matchesFound++;
+                    if (matchesFound === cardImages.length / 2) {
+                        winMessage.style.display = 'block';
+                    }
                     resetBoard();
                 } else {
                     setTimeout(() => {
@@ -165,9 +180,7 @@
                 [flippedCards, lockBoard] = [[], false];
             }
 
-            restartButton.addEventListener('click', () => {
-                createBoard();
-            });
+            restartButton.addEventListener('click', createBoard);
 
             createBoard();
         });
