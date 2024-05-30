@@ -35,6 +35,7 @@ p{
   border-radius: 5px;
   cursor: grab;
 }
+
 .action{
 	display: flex;
 	justify-content: center;
