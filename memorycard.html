@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>Evelen's Dreamland</title>
-     <h2 class="score">Score 0</h2>
+     <h2 class="score">Score: 0</h2>
     <style>
         body {
             display: flex;
@@ -119,10 +119,10 @@
             let flippedCards = [];
             let lockBoard = false;
             let matchesFound = 0;
-            const VeiwScore = document.querySelector(".score").innerHTML = `Score: ${score}`;
-            // renderScore(score) {
-                
-            // }
+            let curScore = 0;
+            renderScore(score) {
+                document.querySelector(".score").innerHTML = `Score: ${score}`;   
+            }
 
             function shuffle(array) {
                 for (let i = array.length - 1; i > 0; i--) {
@@ -172,7 +172,8 @@
 
                 if (firstImage === secondImage) {
                     matchesFound++;
-                    VeiwScore++;
+                    score += 1;
+                    renderScore();
                     if (matchesFound === cardImages.length / 2) {
                         winMessage.style.display = 'block';
                     }
