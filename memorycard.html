@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Memory Card Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .game-container {
+            text-align: center;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 80px);
+            grid-gap: 10px;
+            margin: 0 auto;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 70px;
+            height: 100px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 1s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .flip-card-front {
+            background-color: white;
+            background-image: url('/cardback.png');
+            background-size: cover;
+        }
+
+        .flip-card-back {
+            background-color: #DEF4E4;
+            transform: rotateY(180deg);
+            background-size: cover;
+        }
+
+        #restart-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        #text1{ 
+            position: absolute;
+            top: 55px; 
+            left:130px;
+            font-size: 50px; 
+            font-family:"Phosphate" 
+        }
+        
+        #win-message {
+            display: none;
+            font-size: 48px;
+            color: #F390B9;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div id="game-board" class="game-board"></div>
+        <button id="restart-button">Restart Game</button>
+        <div id="win-message">You Win!!</div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cardImages = [
+                '/cardfronts/kirby.png', '/cardfronts/kirby.png',
+                '/cardfronts/cat.png', '/cardfronts/cat.png',
+                '/cardfronts/creeper.png', '/cardfronts/creeper.png',
+                '/cardfronts/deer.png', '/cardfronts/deer.png',
+                '/cardfronts/dog.png', '/cardfronts/dog.png',
+                '/cardfronts/draemon.png', '/cardfronts/draemon.png',
+                '/cardfronts/squirrel.png', '/cardfronts/squirrel.png',
+                '/cardfronts/ghost.jpg', '/cardfronts/ghost.jpg'
+            ];
+            const gameBoard = document.getElementById('game-board');
+            const restartButton = document.getElementById('restart-button');
+            const winMessage = document.getElementById('win-message');
+            let flippedCards = [];
+            let lockBoard = false;
+            let matchesFound = 0;
+
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function createBoard() {
+                gameBoard.innerHTML = '';
+                winMessage.style.display = 'none';
+                matchesFound = 0;
+                const shuffledImages = shuffle([...cardImages]);
+                shuffledImages.forEach(image => {
+                    const card = document.createElement('div');
+                    card.classList.add('flip-card');
+                    card.innerHTML = `
+                        <div class="flip-card-inner" data-image="${image}">
+                            <div class="flip-card-front"></div>
+                            <div class="flip-card-back" style="background-image: url('${image}');"></div>
+                        </div>
+                    `;
+                    card.addEventListener('click', flipCard);
+                    gameBoard.appendChild(card);
+                });
+            }
+
+            function flipCard() {
+                if (lockBoard) return;
+                if (this.classList.contains('flipped')) return;
+
+                this.classList.add('flipped');
+                flippedCards.push(this);
+
+                if (flippedCards.length === 2) {
+                    checkForMatch();
+                }
+            }
+
+            function checkForMatch() {
+                lockBoard = true;
+
+                const [firstCard, secondCard] = flippedCards;
+                const firstImage = firstCard.querySelector('.flip-card-inner').dataset.image;
+                const secondImage = secondCard.querySelector('.flip-card-inner').dataset.image;
+
+                if (firstImage === secondImage) {
+                    matchesFound++;
+                    if (matchesFound === cardImages.length / 2) {
+                        winMessage.style.display = 'block';
+                    }
+                    resetBoard();
+                } else {
+                    setTimeout(() => {
+                        firstCard.classList.remove('flipped');
+                        secondCard.classList.remove('flipped');
+                        resetBoard();
+                    }, 1000);
+                }
+            }
+
+            function resetBoard() {
+                [flippedCards, lockBoard] = [[], false];
+            }
+
+            restartButton.addEventListener('click', createBoard);
+
+            createBoard();
+        });
+    </script>
+    <span id="text1"> Memory Card Game</span> 
+</body>
+</html>
