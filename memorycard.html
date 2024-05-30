@@ -12,6 +12,10 @@
             margin: 0;
             font-family: Arial, sans-serif;
         }
+        .score {
+            margin: 0;
+            color: #6c90ac;
+        }
 
         .game-container {
             text-align: center;
@@ -115,6 +119,10 @@
             let flippedCards = [];
             let lockBoard = false;
             let matchesFound = 0;
+            const VeiwScore = document.querySelector(".score").innerHTML = `Score: ${score}`;
+            // renderScore(score) {
+                
+            // }
 
             function shuffle(array) {
                 for (let i = array.length - 1; i > 0; i--) {
