@@ -140,7 +140,8 @@
                 gameBoard.innerHTML = '';
                 winMessage.style.display = 'none';
                 matchesFound = 0;
-                score = 0;
+                score = 0; 
+                renderScore(score);
                 const shuffledImages = shuffle([...cardImages]);
                 shuffledImages.forEach(image => {
                     const card = document.createElement('div');
@@ -175,10 +176,10 @@
                 const firstImage = firstCard.querySelector('.flip-card-inner').dataset.image;
                 const secondImage = secondCard.querySelector('.flip-card-inner').dataset.image;
 
-                if (firstImage === secondImage) {
+                 if (firstImage === secondImage) {
                     matchesFound++;
                     score++;
-                    renderScore();
+                    renderScore(score); 
                     if (matchesFound === cardImages.length / 2) {
                         winMessage.style.display = 'block';
                     }
