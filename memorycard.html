@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Evelen's Dreamland</title>
-     <h2 class="score">Score: 0</h2>
+    <title>Memory Card Game</title>
     <style>
         body {
             display: flex;
@@ -11,10 +10,6 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-        }
-        .score {
-            margin: 0;
-            color: #6c90ac;
         }
 
         .game-container {
@@ -99,7 +94,7 @@
     <div class="game-container">
         <div id="game-board" class="game-board"></div>
         <button id="restart-button">Restart Game</button>
-        <div id="win-message">You Win!!Welcome to Evelyn's Dreamland!</div>
+        <div id="win-message">You Win!!</div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -119,10 +114,6 @@
             let flippedCards = [];
             let lockBoard = false;
             let matchesFound = 0;
-            let curScore = 0;
-            renderScore(score) {
-                document.querySelector(".score").innerHTML = `Score: ${score}`;   
-            }
 
             function shuffle(array) {
                 for (let i = array.length - 1; i > 0; i--) {
@@ -172,8 +163,6 @@
 
                 if (firstImage === secondImage) {
                     matchesFound++;
-                    score += 1;
-                    renderScore();
                     if (matchesFound === cardImages.length / 2) {
                         winMessage.style.display = 'block';
                     }
@@ -192,7 +181,7 @@
             }
 
             restartButton.addEventListener('click', createBoard);
-            renderScore();
+
             createBoard();
         });
     </script>
