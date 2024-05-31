@@ -117,7 +117,8 @@
             let matchesFound = 0;
             let score = 0;
             function renderScore(score) {
-                document.querySelector(".score").innerHTML = `Score: ${score}`;   
+                //document.querySelector(".score").innerHTML = `Score: ${score}`;  
+                 document.getElementById('score').innerText = `Score: ${score}`; 
             }
 
             function shuffle(array) {
