@@ -115,6 +115,10 @@
             let flippedCards = [];
             let lockBoard = false;
             let matchesFound = 0;
+            let score = 0;
+            renderScore(score) {
+                document.querySelector(".score").innerHTML = `Score: ${score}`;   
+            }
 
             function shuffle(array) {
                 for (let i = array.length - 1; i > 0; i--) {
@@ -164,6 +168,8 @@
 
                 if (firstImage === secondImage) {
                     matchesFound++;
+                    score++;
+                    renderScore();
                     if (matchesFound === cardImages.length / 2) {
                         winMessage.style.display = 'block';
                     }
@@ -184,6 +190,7 @@
             restartButton.addEventListener('click', createBoard);
 
             createBoard();
+            renderScore();
         });
     </script>
     <span id="text1"> Memory Card Game</span> 
