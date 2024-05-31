@@ -134,6 +134,7 @@
                 gameBoard.innerHTML = '';
                 winMessage.style.display = 'none';
                 matchesFound = 0;
+                score = 0;
                 const shuffledImages = shuffle([...cardImages]);
                 shuffledImages.forEach(image => {
                     const card = document.createElement('div');
